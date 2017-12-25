@@ -18993,9 +18993,39 @@ class Layout extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
       const newId = contacts[contacts.length - 1].id + 1;
 
       this.setState({
-        contacts: contacts.concat({ id: newId, name: `New Contact ${newId}`, email: `${newId}@example.com` })
+        contacts: contacts.concat({
+          id: newId,
+          name: this.refs.name.value,
+          email: this.refs.email.value
+        })
       });
-    }, _temp;
+
+      this.refs.name.value = null;
+      this.refs.email.value = null;
+    }, this.newContact = () => __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+      'div',
+      { className: 'pure-g' },
+      __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+        'form',
+        { className: 'pure-form', onSubmit: this.addContact },
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          'fieldset',
+          null,
+          __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+            'legend',
+            null,
+            'New Contact'
+          ),
+          __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { ref: 'email', type: 'email', placeholder: 'example@example.com' }),
+          __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { ref: 'name', type: 'text', placeholder: 'Name' }),
+          __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+            'button',
+            { type: 'submit', className: 'pure-button pure-button-primary' },
+            'Add'
+          )
+        )
+      )
+    ), _temp;
   }
 
   componentWillMount() {
@@ -19008,11 +19038,7 @@ class Layout extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
     return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
       'div',
       { id: 'Layout' },
-      __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-        'a',
-        { className: 'pure-button', href: '#', onClick: this.addContact },
-        'Add Contact'
-      ),
+      this.newContact(),
       __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'div',
         { className: 'pure-g' },
@@ -19521,18 +19547,18 @@ const data = [{ id: 1, name: 'Magzhan Zhaksygeldi', email: 'magzhan@gmail.com' }
 
 
 const Contact = props => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-	'div',
-	{ className: 'pure-u-1-3' },
-	__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-		'h2',
-		null,
-		props.name
-	),
-	__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-		'p',
-		null,
-		props.email
-	)
+    'div',
+    { className: 'pure-u-1-3' },
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'h2',
+        null,
+        props.name
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'p',
+        null,
+        props.email
+    )
 );
 
 /* harmony default export */ __webpack_exports__["a"] = (Contact);
