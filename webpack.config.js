@@ -1,3 +1,4 @@
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -5,7 +6,7 @@ module.exports = {
     app: './app',
   },
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     chunkFilename: '[id].js',
   },
@@ -13,9 +14,13 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        use: [
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(scss|sass)$/,
+        loaders: [
           'style-loader',
-          'css-loader',
+          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!sass-loader',
         ],
       },
       {
@@ -24,14 +29,11 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['es2017', 'stage-0', 'react'],
-          plugins: ['transform-runtime'],
+          plugins: ['transform-runtime', 'transform-decorators-legacy'],
         },
       },
     ],
   },
   plugins: [
-    new ExtractTextPlugin('[name].css', {
-      allChunks: true,
-    }),
   ],
 };
